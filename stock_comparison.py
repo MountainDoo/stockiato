@@ -1,7 +1,7 @@
 import pandas_datareader as pdr
 import matplotlib.pyplot as plt
-from datetime import datetime
 from dateutil import parser
+import datetime
 import os
 import warnings
 warnings.filterwarnings('ignore')
@@ -12,9 +12,9 @@ def date_diff(date1, date2):
     return abs((date2 - date1).days)
 
 def get_ticker_symbol():
-    today = datetime.today().strftime('%Y-%m-%d')
-    valid_start_date = '2021-05-21'
-    valid_end_date = '2021-05-21'
+    today = datetime.datetime.now().date()
+    valid_start_date = today
+    valid_end_date = today
     global list_of_ticker_symbols
     list_of_ticker_symbols = []
 
@@ -28,7 +28,7 @@ def get_ticker_symbol():
     for i in range(0, int(num_of_stocks)):
         while True:
             try:
-                ticker_symbol = input(str(i + 1) + ') Enter ticker symbol: ')
+                ticker_symbol = input(str(i + 1) + ') Enter ticker symbol: ').upper()
                 stock_data = pdr.data.DataReader(ticker_symbol, 'yahoo', valid_start_date, valid_end_date)
                 list_of_ticker_symbols.append(ticker_symbol)
                 break
@@ -52,22 +52,24 @@ def input_stk_info():
             print('The difference between the Start Date & End Date needs to be greater than 10!')
     get_ticker_symbol()
 
-    print('\nColumn fields:')
-    print('     1) Open')
-    print('     2) High')
-    print('     3) Low')
-    print('     4) Adj Close')
-    field_num = input('\nSelect a column field number: ')
-    if field_num == '1':
-        df_col = 'Open'
-    elif field_num == '2':
-        df_col = 'High'
-    elif field_num == '3':
-        df_col = 'Low'
-    elif field_num == '4':
-        df_col = 'Adj Close'
-    else:
-        print('Not a valid choice.')
+    df_col = ''
+    while df_col == '':
+        print('\nColumn fields:')
+        print('     1) Open')
+        print('     2) High')
+        print('     3) Low')
+        print('     4) Adj Close')
+        field_num = input('\nSelect a column field number: ')
+        if field_num == '1':
+            df_col = 'Open'
+        elif field_num == '2':
+            df_col = 'High'
+        elif field_num == '3':
+            df_col = 'Low'
+        elif field_num == '4':
+            df_col = 'Adj Close'
+        else:
+            print('Not a valid choice.')
 
 def display_stk_cmpr():
     print('\n--------------------------DISPLAY STOCK COMPARISON--------------------------\n')
