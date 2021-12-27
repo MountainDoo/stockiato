@@ -1,2 +1,2 @@
 # stockiato
-Python based tool for viewing, comparing and downloading historical stock prices.
+CLI based tool for viewing historic stock and cryptocurrency data.
