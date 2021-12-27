@@ -1,5 +1,6 @@
 import pandas_datareader as pdr
 import matplotlib.pyplot as plt
+import datetime
 from dateutil import parser
 import os
 import warnings
@@ -12,8 +13,9 @@ def date_diff(date1, date2):
 
 def valid_ticker_symbol():
     global ticker_symbol
-    valid_start_date = '2021-05-01'
-    valid_end_date = '2021-05-10'
+    today = datetime.datetime.now().date()
+    valid_start_date = today #'2021-05-01'
+    valid_end_date = today #'2021-05-10'
 
     while True:
         try:
@@ -45,7 +47,7 @@ def display_stk_hist():
     inpt_stock_info()
     stock_data = pdr.data.DataReader(ticker_symbol, 'yahoo', start_date, end_date)
     stock_data = stock_data.loc[:, ['Open', 'High', 'Low', 'Adj Close']]
-    print(stock_data.tail())
+    print(stock_data)
 
 def plot_stk_hist():
     print('\n--------------------------PLOT STOCK HISTORY--------------------------\n')
