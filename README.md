@@ -1,2 +1,2 @@
 # stockiato
-CLI based tool for viewing stock and cryptocurrency data.
+Tool for viewing stock and cryptocurrency data.
