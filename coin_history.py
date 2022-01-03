@@ -23,7 +23,7 @@ def valid_coin_symbol():
             coin_data = pdr.data.DataReader(coin_symbol + '-USD', 'yahoo', valid_start_date, valid_end_date)
             break
         except pdr._utils.RemoteDataError as exp:
-            print('Not a valid coin symbol, please enter a valid ticker symbol')
+            print('Not a valid coin symbol, please enter a valid coin symbol')
 
 def inpt_coin_info():
     global start_date
